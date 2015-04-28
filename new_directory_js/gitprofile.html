@@ -13,7 +13,7 @@
     <main class="container">
     </main>
 
-    <template> <!--to hold client-side content that is not to be renered when a page is reloaded  -->
+    <template> <!--to hold client-side content that is not to be rendered when a page is reloaded  -->
       <article class="profile"> <!-- independent self contained content, e.g. blog entry, user comment -->
         <section class="pic">
         <img src={{avatar_url}}> <!-- this taps into the API and pulls the avatar -->
@@ -24,6 +24,7 @@
 
         Repos: {{public_repos}}
         Followers: {{followers}}
+        Created at: {{created_at}}
 
         </section>
       </article>

@@ -4,29 +4,24 @@ $(document).ready(function() { // makes available and safe to be rendered
 
     e.preventDefault(); //event.preventDefault
 
-    var url = 'https://api.github.com/users/' + $('input.username').val() + '/followers'; // makes url equal to the user api + phoebehugh returns the value - users/phoebehugh
+    var url = 'https://api.github.com/users/' + $('input.username').val(); // makes url equal to the user api + phoebehugh returns the value - users/phoebehugh
 
-    var followerList = ''
+    var template = $('template').html(); // just returns content of selected element in jquery
 
-    $.get(url, function(followers) { // passes in users/phoebe. Info is like a callback - a function within a function
-      followers.forEach(function(follower, index, array) {
-        followerList += '<p>Follower ' + (index + 1) + ': ';
-        followerList += follower.login + ' (url: ' + follower.url + ')</p>';
-        followerList += 'Are they hireable? ' + 'No';
+    var displayError = function(){ $('.container').prepend("User not found") };
+
+    var clearInput = function(){ $('input.username').val('') };
+
+
+    $.get(url, function(info) {
+      $('.container').prepend(Mustache.render(template, info)); //prepend inserts the content at the top of the container
+    }).fail(function() {
+      displayError();
+    }).always(function() { // always executed regardless of what happens
+      clearInput();
       });
-    $('.container').html(followerList);
-    });
   });
 });
-
-//       $('.container').prepend(Mustache.render(template, info)); //prepend inserts the content at the top of the container
-    // }).fail(function() {
-    //   $('.container').prepend("User not found")
-    // }).always(function() { // a promise, to always return the success and error 
-    //   $('input.username').val('');
-      // });
-
-//     var template = $('template').html(); // just returns content of selected element in jquery
 
 
 
