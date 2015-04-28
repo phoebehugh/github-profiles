@@ -8,21 +8,25 @@ $(document).ready(function() { // makes available and safe to be rendered
 
     var followerList = ''
 
-
-    // $('.container').html(followerList);
     $.get(url, function(followers) { // passes in users/phoebe. Info is like a callback - a function within a function
-      followers.forEach(function(follower, index, array))
+      followers.forEach(function(follower, index, array) {
+        followerList += '<p>Follower ' + (index + 1) + ': ';
+        followerList += follower.login + '</p>';
+      });
+    $('.container').html(followerList);
+    });
+  });
+});
+
 //       $('.container').prepend(Mustache.render(template, info)); //prepend inserts the content at the top of the container
     // }).fail(function() {
     //   $('.container').prepend("User not found")
     // }).always(function() { // a promise, to always return the success and error 
     //   $('input.username').val('');
-      });
+      // });
 
 //     var template = $('template').html(); // just returns content of selected element in jquery
 
-  });
-});
 
 
 
