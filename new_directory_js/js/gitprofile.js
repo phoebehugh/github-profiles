@@ -11,7 +11,8 @@ $(document).ready(function() { // makes available and safe to be rendered
     $.get(url, function(followers) { // passes in users/phoebe. Info is like a callback - a function within a function
       followers.forEach(function(follower, index, array) {
         followerList += '<p>Follower ' + (index + 1) + ': ';
-        followerList += follower.login + '</p>';
+        followerList += follower.login + ' (url: ' + follower.url + ')</p>';
+        followerList += 'Are they hireable? ' + 'No';
       });
     $('.container').html(followerList);
     });
